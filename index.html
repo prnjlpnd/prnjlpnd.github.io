@@ -14,17 +14,24 @@
 
 var x=document.getElementById("Password").value;
 var y=document.getElementById("UserName").value;
-
+if(x.length!=10 || y.length==0)
+{
+  alert("please enter valid details");
+  window.location.href="addsub.php"
+  
+}
+ else
+{
  db = openDatabase('webdbtutorial', '1.0', 'ScanItems', 2000);
     db.transaction(function(tx) {
-    	var x=document.getElementById("Password").value;
+      var x=document.getElementById("Password").value;
 var y=document.getElementById("UserName").value;
       tx.executeSql("CREATE TABLE if not exists Items1 (ID INTEGER PRIMARY KEY,ScannedData TEXT)",[], function(tx){}, null);
         tx.executeSql('insert into Items1 (ID, ScannedData) values (?,?)',[x,y]);});
 
 window.location.href="websql.html";
  alert("Record added Succesfully")
-
+}
 }
     function store1(){
 
